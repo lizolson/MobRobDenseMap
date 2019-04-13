@@ -21,8 +21,8 @@ def is_inlier(coeffs, xyz, threshold):
 # RANSAC function
 def bestHomogeneousTransformation(xyzs, final_xyzs, n):
     # Parameters
-    max_iterations = 100000
-    goal_inliers = n * 0.3
+    max_iterations = 100
+    goal_inliers = n * 0.8
     parametersDimension = 5
 
     # Reorganize the data
@@ -38,13 +38,13 @@ def bestHomogeneousTransformation(xyzs, final_xyzs, n):
 
 
     # run RANSAC 3 times, for each row of the homogenous transformation
-    m1, b1 = run_ransac(finalData1, estimate, lambda x, y: is_inlier(x, y, 0.01), parametersDimension, goal_inliers, max_iterations)
+    m1, b1 = run_ransac(finalData1, estimate, lambda x, y: is_inlier(x, y, 0.1), parametersDimension, goal_inliers, max_iterations)
     new_m1 = - m1 / m1[-2]
 
-    m2, b2 = run_ransac(finalData2, estimate, lambda x, y: is_inlier(x, y, 0.01), parametersDimension, goal_inliers, max_iterations)
+    m2, b2 = run_ransac(finalData2, estimate, lambda x, y: is_inlier(x, y, 0.1), parametersDimension, goal_inliers, max_iterations)
     new_m2 = - m2 / m2[-2]
 
-    m3, b3 = run_ransac(finalData3, estimate, lambda x, y: is_inlier(x, y, 0.01), parametersDimension, goal_inliers, max_iterations)
+    m3, b3 = run_ransac(finalData3, estimate, lambda x, y: is_inlier(x, y, 0.1), parametersDimension, goal_inliers, max_iterations)
     new_m3 = - m3 / m3[-2]
 
 
@@ -54,5 +54,20 @@ def bestHomogeneousTransformation(xyzs, final_xyzs, n):
                                      [new_m3[0], new_m3[1], new_m3[2], new_m3[4]],
                                      [        0,         0,         0,         1]])
 
+
+    return homogeneousTransform
+
+
+def bestOrthogonalHT(xyzs, final_xyzs, n):
+    M = bestHomogeneousTransformation(xyzs, final_xyzs, n)
+    R = M[0:3, 0:3]
+    u, s, vh = np.linalg.svd(R, full_matrices=True)
+    O = np.matmul(u, vh)
+    print(O)
+
+    homogeneousTransform = np.array([[O[0][0], O[0][1], O[0][2], M[0][3]],
+                                     [O[1][0], O[1][1], O[1][2], M[1][3]],
+                                     [O[2][0], O[2][1], O[2][2], M[2][3]],
+                                     [      0,       0,       0,       1]])
 
     return homogeneousTransform
