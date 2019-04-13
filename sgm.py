@@ -90,7 +90,8 @@ def main():
     xyzp = xyzp.T
     n = len(xyz[0])
     
-    myH = bestHomogeneousTransformation(xyzp, xyz, len(xyz[0]))
+    #myH = bestHomogeneousTransformation(xyzp, xyz, len(xyz[0]))
+    myH = bestOrthogonalHT(xyzp, xyz, len(xyz[0]))
     print(np.linalg.det(myH))
     #Threshold of which points to add to final cloud. higher d threshold, closer up points have to be for consideration
     for c in range(width):
