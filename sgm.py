@@ -10,6 +10,55 @@ import csv
 def main():
   leftdir = sys.argv[1]
   rightdir = sys.argv[2]
+  for i in range(500):
+      print("{:04d}".format(i))
+      leftimg = cv2.imread(leftdir + "000000" +"{:04d}".format(i) + ".png")
+      rightimg = cv2.imread(rightdir + "000000" +"{:04d}".format(i) + ".png")
+      bl = 0.537
+      focal = 718.856
+      height, width, chan = leftimg.shape
+      gray0 = cv2.cvtColor(leftimg, cv2.COLOR_BGR2GRAY)
+      gray1 = cv2.cvtColor(rightimg, cv2.COLOR_BGR2GRAY)
+      window_size = 9#3 #5
+      min_disp = 0#48 #32
+      num_disp = 320-min_disp
+      stereo = cv2.StereoSGBM(minDisparity = min_disp,
+            numDisparities = 192,#num_disp,
+            SADWindowSize = window_size,
+            uniquenessRatio = 5,#10,
+            speckleWindowSize = 100,
+            speckleRange = 32,
+            disp12MaxDiff = 1,
+            P1 = 8*3*window_size**2,
+            P2 = 32*3*window_size**2,
+            fullDP = 1)#False)
+      disp = stereo.compute(gray0, gray1).astype(np.float32) / 16.0
+      #Cloud: will contain the x, y, z points
+      #colors: the color of the points
+      cloud = np.zeros((width * height, 3))
+      colors = np.zeros((width * height, 3))
+      for c in range(width):
+	  for r in range(height):
+	      u = c - (width/2)
+	      v = r - (height/2)
+	      d = disp[r,c]
+	      if d > 25:
+		  z = focal * bl /d
+		  #z = 1
+		  x = u * z/ focal
+		  y = v *z / focal
+		  cloud[c * height + r] = [x, y, z]
+		  color = leftimg[r, c] / 255.0
+		  colors[c * height + r] = [color[2],color[1] ,color[0]]
+      #Clear out array rows that are empty
+      cloud = cloud[~np.all(cloud==0, axis = 1)]
+      colors = colors[~np.all(colors==0, axis = 1)]
+      pcd = PointCloud()
+      pcd.points = Vector3dVector(cloud)
+      pcd.colors = Vector3dVector(colors)
+      print(type(pcd))
+      write_point_cloud("sgmoutput/" + "000000" + "{:04d}".format(i) + ".ply", pcd)
+  '''
   #Reading in Sprites points in the global frame. Creating an array data, where each row is for a timestep, and contains a 2d array of the
   #data for that time step. 
   with open('globpts.csv') as csv_file:
@@ -116,6 +165,8 @@ def main():
     pcd.points = Vector3dVector(cloud)
     pcd.colors = Vector3dVector(colors)
     write_point_cloud('output/' + file[:-3] + 'ply', pcd)
+   '''
+
 
 if __name__ == '__main__':
   main()
