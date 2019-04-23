@@ -1,3 +1,8 @@
+#
+#From https://lmb.informatik.uni-freiburg.de/resources/datasets/IO.py
+#
+
+
 def readPFM(file):
     file = open(file, 'rb')
 
