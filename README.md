@@ -51,7 +51,7 @@ We include a testfile generation script create the textfiles fed to DispNet for 
 ```
 python testfiles.py 100
 ```
-To run DispNet on our dataset, we modified their docker script to run in bash mode. Our docker.sh script, and the generated text files, should be placed in their directory. The docker.sh script must be modified to map in the left and right image directories. After the DispNet docker is made via the DispNet repo instructions, run: 
+To run DispNet on our dataset, we modified their docker script to run in bash mode. The DispNet docker image must first be built using the DispNet-FlowNet Docker image. Our docker.sh script must be modified to map in the left and right image directories (changing the file paths to be the absolute path on your local machine). After the DispNet docker image is made via the DispNet repo instructions, run: 
 ```
 bash docker.sh
 ```
