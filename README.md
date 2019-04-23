@@ -42,10 +42,10 @@ Press Ctrl+C to exit PCListener.py to get two csv files: GPS_VIO_WGPS_T_WVIO.csv
 
 <img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/kitti.gif" width = 430 height = 240 />
 
-##4. Disparity Images
+##4. Disparity Images##
 To generate the disparity estimation, we provide code for creating disparity maps with Semi-Global Block Matching. To run this: 
 ```
-python sgm.py left/ right/ sgmmaps/ sgmplys/
+python sgm.py left/ right/ sgmmaps/ 
 ```
 
 We also used DispNet to generate disparity maps: https://github.com/lmb-freiburg/dispnet-flownet-docker
