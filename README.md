@@ -3,7 +3,6 @@
 ## Overview
 We highlight the prerequisites in Section 1. We have forked the VINS-FUSION repo, and modified it to publish messages necessary for our project. We explain how to use our repo for VINS-FUSION in Section II. This step can be bypassed in testing, as examples of its outputted files are included. Section III explains how to pull in the KITTI data, but the first 100 sample frames are included in 'left/' and 'right/'. In Section IV, we explain how we used the DispNet docker image for our project, as well as the supplementary files we made. This section may also be bypassed, as we include the disparity maps of these 100 sample images. Additionally, in Section V we explain how to generate the point clouds, perform align them based on odometry data, perform ICP, and run RANSAN to transform them in the global frame. Section VI lists our acknowledgements. 
 
-## Installation of VINS-Fusion
 ## 1. Prerequisites
 ### 1.1 **Ubuntu** and **ROS**
 Ubuntu 64-bit 16.04 or 18.04.
