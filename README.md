@@ -36,5 +36,5 @@ Green path is VIO odometry; blue path is odometry under GPS global fusion.
 
 
 ## 4. Acknowledgements
-VINS-Fusion is developed by HKUST-Aerial-Robotics Group(https://github.com/HKUST-Aerial-Robotics/VINS-Fusion). The VINS-Fusion is released under [GPLv3](http://www.gnu.org/licenses/) license.
+VINS-Fusion is developed by [HKUST-Aerial-Robotics Group](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion). The VINS-Fusion is released under [GPLv3](http://www.gnu.org/licenses/) license.
 
