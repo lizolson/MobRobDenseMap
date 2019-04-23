@@ -43,22 +43,27 @@ Press Ctrl+C to exit PCListener.py to get two csv files: GPS_VIO_WGPS_T_WVIO.csv
 <img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/kitti.gif" width = 430 height = 240 />
 
 ##4. Disparity Images
-To generate the disparity estimation, we provide code for creating disparity maps with Semi-Global Block Matching. 
+To generate the disparity estimation, we provide code for creating disparity maps with Semi-Global Block Matching. To run this: 
+```
+python sgm.py left/ right/ sgmmaps/ sgmplys/
+```
 
 We also used DispNet to generate disparity maps: https://github.com/lmb-freiburg/dispnet-flownet-docker
 
 We include a testfile generation script create the textfiles fed to DispNet for disparity estimation. To generate these lists for the first 100 images: 
 ```
-python testfiles.py 100
+python testfiles.py 50
 ```
-To run DispNet on our dataset, we modified their docker script to run in bash mode. The DispNet docker image must first be built using the DispNet-FlowNet Docker image. Our docker.sh script must be modified to map in the left and right image directories (changing the file paths to be the absolute path on your local machine). After the DispNet docker image is made via the DispNet repo instructions, run: 
+To run DispNet on our dataset, we modified their docker script to run in bash mode, and map in our left and right images. The DispNet docker image must first be built using the DispNet-FlowNet Docker image (Steps 0, 1 on their repo). Our docker.sh script must be modified to map in the left and right image directories (changing the file paths to be the absolute path on your local machine). This step lines 149-150. Then run this docker with 
 ```
-bash docker.sh
+$ bash docker.sh -n DispNetCorr1D -v data/disparity-left-images.txt data/disparity-right-images.txt data/disparity-outputs.txt
 ```
+
 From within the docker's bash mode, run: 
 ```
-python demo.py 
+python demo.py /input-output/ /input-output/left.txt /input-output/right.txt /input-output/disp.txt 0
 ```
+where 0 is the GPU device number you would like to use. 
 
 
 
