@@ -9,19 +9,19 @@ We highlight the prerequisites in Section 1. We have forked the VINS-FUSION repo
 Ubuntu 64-bit 16.04 or 18.04.
 
 
-### **ROS**
+### 1.2 **ROS**
 Only needed for Section II
 ROS Kinetic or Melodic. [ROS Installation](http://wiki.ros.org/ROS/Installation)
 
-### 1.2. **Ceres Solver**
+### 1.3. **Ceres Solver**
 Only needed for Section II
 Follow [Ceres Installation](http://ceres-solver.org/installation.html).
 
-### 1.3 **OpenCV**
+### 1.4 **OpenCV**
 Needed for Sections IV and V
 https://pypi.org/project/opencv-python/
 
-### 1.4 **Open3D**
+### 1.5 **Open3D**
 Needed for Sections IV, V, VI. 
 
 
