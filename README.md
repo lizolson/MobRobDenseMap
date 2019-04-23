@@ -1,18 +1,29 @@
 # Sparse Maps and CNN-built Point Clouds Fusion for High-Fidelity 3D Map Generation
 
 ## Overview
-We highlight the prerequisites in Section 1. We have forked the VINS-FUSION repo, and modified it to publish messages necessary for our project. We explain how to use our repo for VINS-FUSION in Section II. This step can be bypassed in testing, as examples of its outputted files are included. Section III explains how to pull in the KITTI data, but the first 100 sample frames are included in 'left/' and 'right/'. In Section IV, we explain how we used the DispNet docker image for our project, as well as the supplementary files we made. This section may also be bypassed, as we include the disparity maps of these 100 sample images. Additionally, in Section V we explain how to generate the point clouds. In Section VI, we show how to align them based on odometry data, perform ICP, and run RANSAN to transform them in the global frame. Section VII lists our acknowledgements. 
+We highlight the prerequisites in Section 1. We have forked the VINS-FUSION repo, and modified it to publish messages necessary for our project. We explain how to use our repo for VINS-FUSION in Section II. This step can be bypassed in testing, as examples of its outputted files are included. Section III explains how to pull in the KITTI data, but the first 100 sample frames are included in 'left/' and 'right/'. In Section IV, we explain how we used the DispNet docker image for our project, as well as the supplementary files we made. This section may also be bypassed, as we include the disparity maps of these 100 sample images. Additionally, in Section V we explain how to generate the point clouds. In Section VI, we show how to align them based on odometry data, perform ICP, and run RANSAN to transform them in the global frame. Section VII lists our acknowledgements. **For simplest testing, we recommend running the provided first 100 images from a KITTI dataset, and using the provided outputs from Sections II and IV, so you can start at Section V. 
 
-## 1. Prerequisites
-### 1.1 **Ubuntu** and **ROS**
+## 1. Prerequisites 
+
+### 1.1 **Ubuntu** 
 Ubuntu 64-bit 16.04 or 18.04.
+
+
+### **ROS**
+Only needed for Section II
 ROS Kinetic or Melodic. [ROS Installation](http://wiki.ros.org/ROS/Installation)
 
-
 ### 1.2. **Ceres Solver**
+Only needed for Section II
 Follow [Ceres Installation](http://ceres-solver.org/installation.html).
 
 ### 1.3 **OpenCV**
+Needed for Sections IV and V
+https://pypi.org/project/opencv-python/
+
+### 1.4 **Open3D**
+Needed for Sections IV, V, VI. 
+
 
 
 
