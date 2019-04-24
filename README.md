@@ -60,9 +60,9 @@ To generate the disparity estimation, we provide code for creating disparity map
 python sgm.py left/ right/ sgmmaps/ 
 ```
 
-We also used DispNet to generate disparity maps: https://github.com/lmb-freiburg/dispnet-flownet-docker
+We also used [DispNet](https://github.com/lmb-freiburg/dispnet-flownet-docker) to generate disparity maps. The output of the first 50 frames are in 'dispnetmaps/'. If you wish to generate these on your own, please follow the other repo's guidelines, but it requires nvidia-docker and GPU usage. 
 
-We include a testfile generation script create the textfiles fed to DispNet for disparity estimation. To generate these lists for the first 50 images: 
+To use DispNet, we include a testfile generation script create the textfiles fed to DispNet for disparity estimation. To generate these lists for the first 50 images: 
 ```
 python testfiles.py 50
 ```
