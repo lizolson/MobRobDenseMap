@@ -10,21 +10,25 @@ Ubuntu 64-bit 16.04 or 18.04.
 
 
 ### 1.2 **ROS**
-Only needed for Section II
+Only needed for Section II. 
+
 ROS Kinetic or Melodic. [ROS Installation](http://wiki.ros.org/ROS/Installation)
 
 ### 1.3. **Ceres Solver**
-Only needed for Section II
+Only needed for Section II. 
+
 Follow [Ceres Installation](http://ceres-solver.org/installation.html).
 
 ### 1.4 **OpenCV 2.4.9**
-Needed for Sections IV and V
-[OpenCV](https://pypi.org/project/opencv-python/)
+Needed for Sections IV and V. 
+
+Use the [OpenCV Documentation](https://pypi.org/project/opencv-python/)
 
 
 ### 1.5 **Open3D**
 Needed for Sections IV, V, VI. 
-[Open3D](http://www.open3d.org/docs/getting_started.html)
+
+Follow the [Open3D Documentation](http://www.open3d.org/docs/getting_started.html)
 
 
 
