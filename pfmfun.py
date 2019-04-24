@@ -3,6 +3,7 @@
 #
 import numpy as np
 import sys
+import re
 def readPFM(file):
     file = open(file, 'rb')
 
