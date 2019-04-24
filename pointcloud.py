@@ -1,5 +1,4 @@
 from team3RANSAC import *
-#from ransac import *
 from open3d import *
 from pfmfun import *
 import cv2
@@ -20,7 +19,6 @@ with open(sys.argv[5]) as csv_file:
         step = int(row[0])
         if step == 10:
             data.append(row[4:])
-    print(data)
     xyz = np.zeros((100, 3))
     xyzp = np.zeros((100, 3))
     ulist = [int(float(x[0])) for x in data]
@@ -33,9 +31,8 @@ with open(sys.argv[5]) as csv_file:
     for i in range(len(ulist)):
         u = int(float(data[i][0]))
         v = int(float(data[i][1]))
-        print(u)
-        print(v)
-        print(type(u))
+        #print(u)
+        #print(v)
         d = disp[v, u]
         if d < 25:
             continue
@@ -53,11 +50,12 @@ with open(sys.argv[5]) as csv_file:
     xyz = xyz.T
     xyzp = xyzp[~np.all(xyzp==0, axis = 1)]
     xyzp = xyzp.T
-    print(xyz)
-    print(xyzp)
+    #print(xyz)
+    #print(xyzp)
     n = len(xyz[0])
     myH = bestOrthogonalHT(xyzp, xyz, n)
     np.save('transform.npy', myH)
+    #Writes a file for the transform to the VINS global frame
     for i in range(num):
       leftimg = cv2.imread(left + "/000000" + "{:04d}".format(i) + ".png")
       image, scale = readPFM( plys + "000000"+ "{:04d}".format(i) + ".pfm")
@@ -90,8 +88,6 @@ with open(sys.argv[5]) as csv_file:
       pcd.colors = Vector3dVector(colors)
       #print(type(pcd))
       write_point_cloud(output + "000000" + "{:04d}".format(i) + ".ply", pcd)
-
-
 if __name__ == '__main__':
   main()
 

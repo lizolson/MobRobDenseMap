@@ -63,7 +63,7 @@ def bestOrthogonalHT(xyzs, final_xyzs, n):
     R = M[0:3, 0:3]
     u, s, vh = np.linalg.svd(R, full_matrices=True)
     O = np.matmul(u, vh)
-    print(O)
+    #print(O)
 
     homogeneousTransform = np.array([[O[0][0], O[0][1], O[0][2], M[0][3]],
                                      [O[1][0], O[1][1], O[1][2], M[1][3]],
