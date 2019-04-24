@@ -1,8 +1,8 @@
 #
 #From https://lmb.informatik.uni-freiburg.de/resources/datasets/IO.py
 #
-
-
+import numpy as np
+import sys
 def readPFM(file):
     file = open(file, 'rb')
 
