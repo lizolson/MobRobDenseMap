@@ -77,7 +77,9 @@ python demo.py /input-output/ /input-output/left.txt /input-output/right.txt /in
 where 0 is the GPU device number you would like to use. 
 
 ## 5. Point Cloud Generation
-
+```
+python pointcloud.py left/ sgmmaps/ 24 plys/ VINS/VF_pointcloud_expanded_full.csv
+```
 
 ## 6. Alignment, Refinement, and Global Frame Transformation
 
